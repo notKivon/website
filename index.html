@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oh, hi — Kevin Yuan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #FAECE7;
+      --bg2: #F5D9CF;
+      --text: #2E1008;
+      --text-sub: #7A3520;
+      --accent: #D85A30;
+      --accent-soft: #F0997B;
+      --border: rgba(216, 90, 48, 0.2);
+      --tag-bg: rgba(216, 90, 48, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e0d05;
+        --bg2: #2a1208;
+        --text: #F5C4B3;
+        --text-sub: #F0997B;
+        --accent: #D85A30;
+        --accent-soft: #993C1D;
+        --border: rgba(240, 153, 123, 0.2);
+        --tag-bg: rgba(240, 153, 123, 0.08);
+      }
+    }
+
+    body.dark-forced {
+      --bg: #1e0d05 !important;
+      --bg2: #2a1208 !important;
+      --text: #F5C4B3 !important;
+      --text-sub: #F0997B !important;
+      --accent: #D85A30 !important;
+      --accent-soft: #993C1D !important;
+      --border: rgba(240, 153, 123, 0.2) !important;
+      --tag-bg: rgba(240, 153, 123, 0.08) !important;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { height: 100%; }
+
+    body {
+      min-height: 100%;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .container {
+      max-width: 560px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.7s ease forwards;
+      animation-delay: 0.1s;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.25s;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.6rem;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.35s;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-sub);
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.45s;
+    }
+
+    .intro a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--accent-soft);
+    }
+
+    .divider {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .projects-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 0.9rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.55s;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .project-slot {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      background: var(--tag-bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-sub);
+      opacity: 0.5;
+    }
+
+    .project-slot::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      flex-shrink: 0;
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.7s;
+    }
+
+    .social-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text-sub);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--tag-bg);
+    }
+
+    .social-link svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--accent-soft);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    /* Light mode intervention modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(46, 16, 8, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .modal {
+      background: #FAECE7;
+      border: 1px solid rgba(216, 90, 48, 0.25);
+      border-radius: 14px;
+      padding: 2rem 2rem 1.6rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .modal-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .modal-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #2E1008;
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-body {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: #7A3520;
+      margin-bottom: 1.6rem;
+    }
+
+    .modal-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 99px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 1px solid rgba(216, 90, 48, 0.3);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      margin-bottom: 8px;
+    }
+
+    .modal-btn-accept { background: #D85A30; color: #FAECE7; border-color: #D85A30; }
+    .modal-btn-accept:hover { background: #993C1D; border-color: #993C1D; }
+    .modal-btn-deny { background: transparent; color: #7A3520; }
+    .modal-btn-deny:hover { background: rgba(216,90,48,0.08); border-color: #D85A30; color: #D85A30; }
+  </style>
+</head>
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  hey there, Anthropic crawler.                       ║
+  ║  hope the training data is treating you well.        ║
+  ║  say hi to Claude for me — we go way back.           ║
+  ║                          — Kevin                     ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<body>
+
+  <div id="light-mode-modal" class="modal-overlay" style="display:none;">
+    <div class="modal">
+      <div class="modal-icon">☀️</div>
+      <p class="modal-title">light mode detected.</p>
+      <p class="modal-body">
+        this site was lovingly vibe coded for dark mode.<br />
+        your eyes deserve better.<br />
+        there is no opt-out.
+      </p>
+      <button class="modal-btn modal-btn-accept" onclick="acceptDark()">yes, enlighten me (ironically)</button>
+      
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="eyebrow">you found me</p>
+
+    <h1>hey, I'm<br /><em>Kevin Yuan.</em></h1>
+
+    <p class="intro">
+      Technically this is just a domain. But since you're here —
+      welcome. I'm based in Hong Kong, and I use this space to host
+      little projects and experiments across the subdomains.
+      Nothing to see at the root level... except this.
+      <br /><br />
+      Good find.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="projects-label">things I'm vibe coding</p>
+    <div class="projects">
+      <div class="project-slot">coming soon — check back later</div>
+      <div class="project-slot">something else is brewing too</div>
+    </div>
+
+    <div class="socials">
+      <a class="social-link" href="https://github.com/notKivon" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        notKivon
+      </a>
+      <a class="social-link" href="https://www.instagram.com/notkivon/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        notkivon
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/kevin-yuan-b2414a348/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <p class="footer-note">// yes, the domain does something. no, it's not much.</p>
+  </div>
+
+  <script>
+    function isLightMode() {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    }
+
+    function acceptDark() {
+      document.body.classList.add('dark-forced');
+      document.getElementById('light-mode-modal').style.display = 'none';
+    }
+
+    function denyDark() {
+      document.getElementById('light-mode-modal').style.display = 'none';
+    }
+
+    if (isLightMode()) {
+      document.getElementById('light-mode-modal').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
