@@ -166,6 +166,48 @@
       opacity: 0.5;
     }
 
+    .project {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .project:hover {
+      border-color: var(--accent);
+      background: var(--tag-bg);
+    }
+
+    .project::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      transform: translateY(-2px);
+    }
+
+    .project-name {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .project-desc {
+      display: block;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-sub);
+    }
+
     .project-slot::before {
       content: '';
       display: inline-block;
@@ -330,7 +372,12 @@
 
     <p class="projects-label">things I'm vibe coding</p>
     <div class="projects">
-      <div class="project-slot">coming soon — check back later</div>
+      <a class="project" href="https://tasks.11123334.xyz" target="_blank" rel="noopener">
+        <span>
+          <span class="project-name">tasks.11123334.xyz ↗</span>
+          <span class="project-desc">A kanban board for school work. Tasks get labelled by class, move between columns as due dates get closer, and sync to my calendar.</span>
+        </span>
+      </a>
       <div class="project-slot">something else is brewing too</div>
     </div>
 
